@@ -115,6 +115,27 @@ export const featuredProducts: Products = [
       },
     ],
   },
+  {
+    id: 6,
+    title: "Ducky x Varmilo Miya Pro Sakura Round 2",
+    desc: "Comes with compact 65% form factor, designed to be compatible with most MacOS, and updated Sakura colorway",
+    image: "/keyboard_6.jpg",
+    price: 120.00,
+    options: [
+      {
+        title: "Cherry MX Silent Red",
+        additionalPrice: 10,
+      },
+      {
+        title: "Varmillo EC Rose V2",
+        additionalPrice: 10,
+      },
+      {
+        title: "Varmillo EC Sakura V2",
+        additionalPrice: 10,
+      },
+    ],
+  },
 ];
 
 
