@@ -34,7 +34,7 @@ export const featuredProducts: Products = [
   {
     id: 2,
     title: "Ducky One 3 SF Aura Clear White",
-    desc: "The One 3 series features Ducky's all new QUACK Mechanics design philosophy which focuses on achieving best-in-class aesthetics, hotswap functionality, sound dampening, stabilizers, and more!",
+    desc: "The One 3 series features Ducky's all new QUACK Mechanics design philosophy, and more!",
     image: "/keyboard_2.jpg",
     price: 129.99,
     options: [
@@ -55,7 +55,7 @@ export const featuredProducts: Products = [
   {
     id: 3,
     title: "Ducky One 2 Mini Pure White",
-    desc: "10 additional PBT Double Shot colorful keycaps (Random color), also supports Ducky Macro 2.0, the most powerful hardware available in the market",
+    desc: "10 additional PBT Double Shot colorful keycaps (Random color), also supports Ducky Macro 2.0",
     image: "/keyboard_3.png",
     price: 99.0,
     options: [
@@ -76,7 +76,7 @@ export const featuredProducts: Products = [
   {
     id: 4,
     title: "Vortex Race 3 TKL Dye",
-    desc: "Vortex's newest 75% keyboard, the 83-key Race 3! Do you need dedicated arrow keys that your 60% doesn't provide, but don't want the size of a TKL? A 75% may be just for you!",
+    desc: "Vortex's newest 75% keyboard, the 83-key Race 3!",
     image: "/keyboard_4.jpg",
     price: 139.99,
     options: [
@@ -97,7 +97,7 @@ export const featuredProducts: Products = [
   {
     id: 5,
     title: "Obinslab Anne Pro 2 White 60%",
-    desc: "Can be used wired over USB-C or wirelessly over Bluetooth 5.0, large 1900mAh battery, and bluetooth functionality is compatible with Windows, Mac, Linux, iOS, and Android",
+    desc: "USB-C or wireless with Bluetooth, large 1900mAh battery, and bluetooth functionality compatible with most OS",
     image: "/keyboard_5.jpg",
     price: 64.99,
     options: [

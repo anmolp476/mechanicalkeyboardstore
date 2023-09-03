@@ -1,28 +1,49 @@
-import Image from 'next/image'
-import React from 'react'
+import { featuredProducts } from "@/data";
+import Image from "next/image";
+import React from "react";
 
 const FeaturedItems = () => {
   return (
-    <div className="w-screen overflow-x-scroll text-black">
+    <div className="w-full overflow-x-scroll text-black pt-8 ">
       {/* This will be the wrapper for the second slider */}
       <div className="w-max flex">
         {/* This will be one item */}
-        <div className="w-screen h-[60vh] flex flex-col justify-around items-center p-4">
-          {/* This is the div for the image */}
-          <div className="relative flex-1 w-full border-b-black">
-            <Image src="/keyboard_1.jpg" alt="" fill className="object-contain"/>
+        {featuredProducts.map((product) => (
+          <div
+            key={product.id}
+            className="w-screen h-[70vh] flex flex-col justify-around items-center p-4 md:w-[50vw] xl:w-[33vw] xl:h-[90vh]"
+          >
+            {/* This is the div for the image */}
+            {product.image && (
+              <div className="relative flex-1 w-full border-b-black hover:animate-bounce">
+                <Image
+                  src={product.image}
+                  alt=""
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            )}
+            {/* This is the div for the text, or everything below the image */}
+            <div className="flex-1 flex flex-col gap-4 items-center justify-center">
+              <h1 className="text-xl font-bold uppercase items-center text-center">
+                {product.title}
+              </h1>
+              {product.desc && (
+                <p className="p-4 text-sm text-center md:text-lg lg:text-xl mt-[-2em] sm:mt-0">
+                  {product.desc}
+                </p>
+              )}
+              <span className="text-xl font-bold">${product.price}</span>
+              <button className="bg-black text-white p-2 rounded-md">
+                Add to Cart
+              </button>
+            </div>
           </div>
-          {/* This is the div for the text, or everything below the image */}
-          <div className="flex-1 flex flex-col gap-4">
-            <h1 className="text-xl font-bold uppercase">Title</h1>
-            <p className="">Description</p>
-            <span className="text-xl font-bold">$45.99</span>
-            <button className="bg-black text-white p-2 rounded-md">Add to Cart</button>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
-}
+};
 
-export default FeaturedItems
+export default FeaturedItems;
