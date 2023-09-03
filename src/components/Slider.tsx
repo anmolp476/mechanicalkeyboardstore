@@ -26,14 +26,14 @@ const Slider = () => {
     },
   ];
 
-  // useEffect(() => {
-  //   const timeInterval = setInterval(
-  //     () => setImage((prev) => (prev === sliderItems.length-1 ? 0 : prev + 1)),
-  //     2000
-  //   );
+  useEffect(() => {
+    const timeInterval = setInterval(
+      () => setImage((prev) => (prev === sliderItems.length-1 ? 0 : prev + 1)),
+      4000
+    );
 
-  //   return () => clearInterval(timeInterval);
-  // }, []);
+    return () => clearInterval(timeInterval);
+  }, []);
 
   return (
     <div className="flex flex-col lg:flex-row h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)]">

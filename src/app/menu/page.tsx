@@ -1,10 +1,10 @@
 import React from 'react'
 
-const MenuPage = () => {
+const KeyboardsPage = () => {
   return (
-    <div>MenuPage</div>
+    <div>KeyboardsPage</div>
   )
 }
 
-export default MenuPage
+export default KeyboardsPage
 
