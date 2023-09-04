@@ -7,7 +7,7 @@ const Footer = () => {
       <Link href="/" className="font-bold text-l">
         MechMarket
       </Link>
-      <p>Made with ❤️ By Anmol</p>
+      <p>Made With ❤️ By Anmol</p>
     </div>
   );
 };

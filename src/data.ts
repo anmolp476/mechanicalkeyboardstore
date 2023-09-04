@@ -120,7 +120,7 @@ export const featuredProducts: Products = [
     title: "Ducky x Varmilo Miya Pro Sakura Round 2",
     desc: "Comes with compact 65% form factor, designed to be compatible with most MacOS, and updated Sakura colorway",
     image: "/keyboard_6.jpg",
-    price: 120.00,
+    price: 120.0,
     options: [
       {
         title: "Cherry MX Silent Red",
@@ -138,15 +138,36 @@ export const featuredProducts: Products = [
   },
 ];
 
+type Keyboards = {
+  id: number;
+  slug: string;
+  title: string;
+  desc?: string;
+  image?: string;
+}[];
 
+export const keyboards: Keyboards = [
+  
+  {
+    id: 1,
+    slug: "keyboards",
+    title: "Mechanical Keyboards",
+    desc: "Check out some neat boards!",
+    image: "/menuImg.webp",
+  },
+  {
+    id: 2,
+    slug: "mice",
+    title: "Gaming Mice",
+    desc: "Coming soon...",
+    image: "/gamingMice.jpg",
+  },
+  {
+    id: 3,
+    slug: "monitor",
+    title: "Monitors",
+    desc: "Coming soon...",
+    image: "/monitor.jpg",
+  },
 
-
-
-
-
-
-
-
-
-
-
+];
