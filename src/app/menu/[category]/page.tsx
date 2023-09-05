@@ -8,7 +8,7 @@ const CategoryPage = () => {
     <div className="text-black flex flex-wrap">
       {featuredProducts.map((keyboard) => (
         <Link
-          href={`product/${keyboard.id}`}
+          href={`/product/${keyboard.id}`}
           className="group flex flex-col justify-between w-full h-[60vh] p-4 border-r-2 border-b-2 border-black lg:w-1/3 sm:w-1/2"
         >
           {/* This is for the image */}
