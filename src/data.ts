@@ -9,6 +9,28 @@ type Product = {
 
 type Products = Product[];
 
+export const singleProduct: Product = {
+  id: 1,
+  title: "Leopold FC900R Two Tone White",
+  desc: "Beautiful style, with genuine Cherry MX Switches, full-size layout, and dip switches for customizing layout!",
+  image: "/keyboard_1.jpg",
+  price: 149.99,
+  options: [
+    {
+      title: "Cherry MX Brown",
+      additionalPrice: 5,
+    },
+    {
+      title: "Cherry MX Clear",
+      additionalPrice: 7,
+    },
+    {
+      title: "Cherry MX Silent Red",
+      additionalPrice: 9,
+    },
+  ],
+};
+
 export const featuredProducts: Products = [
   {
     id: 1,
@@ -138,8 +160,6 @@ export const featuredProducts: Products = [
   },
 ];
 
-
-
 type Keyboards = {
   id: number;
   slug: string;
@@ -149,7 +169,6 @@ type Keyboards = {
 }[];
 
 export const keyboards: Keyboards = [
-  
   {
     id: 1,
     slug: "keyboards",
@@ -171,5 +190,4 @@ export const keyboards: Keyboards = [
     desc: "Coming soon...",
     image: "/monitor.jpg",
   },
-
 ];

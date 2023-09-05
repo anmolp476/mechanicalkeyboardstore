@@ -4,7 +4,7 @@ import { FiShoppingCart } from "react-icons/fi"
 
 const CartIcon = () => {
   return (
-    <Link href="/orders" className="flex items-center gap-4">
+    <Link href="/cart" className="flex items-center gap-4">
         <div className="relative w-8 h-8 md:w-5 md:h-5">
             <FiShoppingCart style={{width: "100%", height:"100%"}}></FiShoppingCart>
         </div>
