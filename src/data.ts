@@ -117,7 +117,7 @@ export const featuredProducts: Products = [
   },
   {
     id: 6,
-    title: "Ducky x Varmilo Miya Pro Sakura Round 2",
+    title: "Ducky x Varmilo Miya",
     desc: "Comes with compact 65% form factor, designed to be compatible with most MacOS, and updated Sakura colorway",
     image: "/keyboard_6.jpg",
     price: 120.0,
@@ -137,6 +137,8 @@ export const featuredProducts: Products = [
     ],
   },
 ];
+
+
 
 type Keyboards = {
   id: number;
