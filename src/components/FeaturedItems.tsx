@@ -34,10 +34,12 @@ const FeaturedItems = () => {
                   {product.desc}
                 </p>
               )}
-              <span className="text-xl font-bold">${product.price}</span>
-              <button className="bg-black text-white p-2 rounded-md">
-                Add to Cart
-              </button>
+              <div className="flex justify-around flex-col items-center sm:flex-row w-full">
+                <span className="text-xl font-bold">${product.price}</span>
+                <button className="bg-black text-white p-2 rounded-md">
+                  Add to Cart
+                </button>
+              </div>
             </div>
           </div>
         ))}
