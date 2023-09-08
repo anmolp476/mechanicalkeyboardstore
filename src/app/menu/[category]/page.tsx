@@ -1,12 +1,33 @@
-import { featuredProducts, keyboards } from "@/data";
+import { ProdType } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const CategoryPage = () => {
+type Props = {
+  params:{category:string}
+}
+
+const getData = async (category:String) => {
+  const res = await fetch(`http://localhost:3000/api/products?cat=${category}`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("getData Failed");
+  }
+
+  return res.json();
+};
+
+
+const CategoryPage = async({params}:Props) => {
+
+  const keyboards:ProdType[] = await getData(params.category)
+
+
   return (
     <div className="text-black flex flex-wrap">
-      {featuredProducts.map((keyboard) => (
+      {keyboards.map((keyboard) => (
         <Link
           href={`/product/${keyboard.id}`}
           className="group flex flex-col justify-between w-full h-[60vh] p-4 border-r-2 border-b-2 border-black lg:w-1/3 sm:w-1/2"
