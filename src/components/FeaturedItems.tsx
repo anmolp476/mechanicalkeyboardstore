@@ -1,8 +1,25 @@
 import { featuredProducts } from "@/data";
+import { ProdType } from "@/types/types";
 import Image from "next/image";
 import React from "react";
 
-const FeaturedItems = () => {
+const getData = async () => {
+  const res = await fetch("http://localhost:3000/api/products", {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("getData Failed");
+  }
+
+  return res.json();
+};
+
+
+const FeaturedItems = async() => {
+
+  const featuredProducts:ProdType[] = await getData()
+  
   return (
     <div className="w-full overflow-x-scroll text-black pt-8 ">
       {/* This will be the wrapper for the second slider */}

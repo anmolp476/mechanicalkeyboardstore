@@ -1,8 +1,24 @@
-import { keyboards } from "@/data";
+// import { keyboards } from "@/data";
+import { MenuType } from "@/types/types";
 import Link from "next/link";
 import React from "react";
 
-const KeyboardsPage = () => {
+const getData = async() =>{
+  const res = await fetch("http://localhost:3000/api/categories", {
+    cache:"no-store"
+  })
+
+  if(!res.ok){
+    throw new Error("getData Failed");
+  }
+
+  return res.json()
+}
+
+const KeyboardsPage = async() => {
+
+  const keyboards:MenuType = await getData()
+
   return (
     <div className="flex flex-col justify-center gap-4 items-center lg:px-20 xl:px-40 pt-12 h-[84vh] md:h-[calc(100vh - 9rem)]">
       {keyboards.map((keyboard) => (
