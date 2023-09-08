@@ -1,15 +1,14 @@
-import React from 'react'
-import Menu from './Menu'
-import Link from 'next/link'
-import CartIcon from "./CartIcon"
+import React from "react";
+import Menu from "./Menu";
+import Link from "next/link";
+import CartIcon from "./CartIcon";
+import UserLinks from "./UserLinks";
 
 const Navbar = () => {
-
-  const user = false
+  const user = false;
 
   return (
     <div className=" lg:px-20 xl:pg-40 h-12 text-black uppercase flex justify-between items-center p-4 border-b-2 border-b-black md:h-24">
-
       <div className="hidden md:flex gap-4 flex-1">
         <Link href="/">Home</Link>
         <Link href="/menu">Keyboards</Link>
@@ -27,13 +26,12 @@ const Navbar = () => {
         <Menu></Menu>
       </div>
 
-
       <div className="hidden md:flex gap-4 items-center flex-1 justify-end">
-        {!user ? (<Link href="/login">Login</Link>) : (<Link href="/orders">Orders</Link>)}
+        <UserLinks/>
         <CartIcon></CartIcon>
       </div>
     </div>
   );
-}
+};
 
-export default Navbar
+export default Navbar;
