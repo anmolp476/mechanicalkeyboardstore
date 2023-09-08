@@ -14,35 +14,67 @@ model Category{
   id String @id @default(cuid())
   createdAt DateTime @default(now())
   title String
-  desc String
+  desc String?
   color String
-  image String
-  slug String @unique
-  products Product[] 
+  image String?
+  slug String @unique 
+  products Product[]
 }
 
 model Product{
   id String @id @default(cuid())
   createdAt DateTime @default(now())
   title String
-  desc String
-  color String
+  desc String?
   image String?
   price Decimal
-  isFeatured Boolean @default(false)
+  isFeatured Boolean
   options Json[]
   category Category @relation(fields: [catSlug], references: [slug])
   catSlug String
 }
 
+
 model Order{
   id String @id @default(cuid())
   createdAt DateTime @default(now())
   price Decimal
-  product Json[]
+  products Json[]
   status String
   intent_id String? @unique
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
