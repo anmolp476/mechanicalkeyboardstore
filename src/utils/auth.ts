@@ -1,20 +1,56 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { NextAuthOptions, getServerSession } from "next-auth";
-import  GoogleProvider  from "next-auth/providers/google";
+import { NextAuthOptions, getServerSession, User } from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
 import prisma from "./connect";
 
-export const auth:NextAuthOptions = {
-    adapter: PrismaAdapter(prisma),
-    providers: [
-        GoogleProvider({
-            clientId: process.env.GOOGLE_ID as string,
-            clientSecret: process.env.GOOGLE_SECRET as string
-        })
-    ]
+declare module "next-auth" {
+  interface Session {
+    user: User & {
+      isAdmin: Boolean;
+    };
+  }
 }
 
+declare module "next-auth/jwt" {
+  interface JWT {
+    isAdmin: Boolean;
+  }
+}
+
+export const auth: NextAuthOptions = {
+  adapter: PrismaAdapter(prisma),
+  session: {
+    strategy: "jwt",
+  },
+  providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID as string,
+      clientSecret: process.env.GOOGLE_SECRET as string,
+    }),
+  ],
+
+  callbacks: {
+    async session({ token, session }) {
+      if (token) {
+        session.user.isAdmin = token.isAdmin;
+      }
+
+      return session;
+    },
+    async jwt({ token }) {
+        
+        const userInDataBase = await prisma.user.findUnique({
+            where:{
+                email:token.email!
+            }
+        })
+
+        token.isAdmin = userInDataBase?.isAdmin!
+
+        return token;
+    },
+  },
+};
+
 //With this function we can get our user and status in server components as well
-export const getAuthSession = () => getServerSession(auth)
-
-
-
+export const getAuthSession = () => getServerSession(auth);

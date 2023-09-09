@@ -11,18 +11,18 @@ datasource db {
 }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -42,10 +42,11 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
-  isAdmin       Boolean @default(false)
+  isAdmin       Boolean   @default(false)
   image         String?
   accounts      Account[]
   sessions      Session[]
+  Order         Order[]
 }
 
 model VerificationToken {
@@ -56,77 +57,37 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-model Category{
-  id String @id @default(cuid())
-  createdAt DateTime @default(now())
-  title String
-  desc String?
-  color String
-  image String?
-  slug String @unique 
-  products Product[]
+model Category {
+  id        String    @id @default(cuid())
+  createdAt DateTime  @default(now())
+  title     String
+  desc      String?
+  color     String
+  image     String?
+  slug      String    @unique
+  products  Product[]
 }
 
-model Product{
-  id String @id @default(cuid())
-  createdAt DateTime @default(now())
-  title String
-  desc String?
-  image String?
-  price Decimal
+model Product {
+  id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+  title      String
+  desc       String?
+  image      String?
+  price      Decimal
   isFeatured Boolean
-  options Json[]
-  category Category @relation(fields: [catSlug], references: [slug])
-  catSlug String
+  options    Json[]
+  category   Category @relation(fields: [catSlug], references: [slug])
+  catSlug    String
 }
 
-
-model Order{
-  id String @id @default(cuid())
+model Order {
+  id        String   @id @default(cuid())
   createdAt DateTime @default(now())
-  price Decimal
-  products Json[]
-  status String
-  intent_id String? @unique
+  price     Decimal
+  products  Json[]
+  status    String
+  intent_id String?  @unique
+  user      User     @relation(fields: [userEmail], references: [email])
+  userEmail String
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
