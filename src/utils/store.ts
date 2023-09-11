@@ -7,7 +7,7 @@ const initialStateOfProd = {
     totalPrice: 0,
 }
 
-const useCartStore = create<CartType & ActionType>((set, get) => ({
+export const useCartStore = create<CartType & ActionType>((set, get) => ({
     products: initialStateOfProd.products,
     totalItems: initialStateOfProd.totalItems,
     totalPrice: initialStateOfProd.totalPrice,
