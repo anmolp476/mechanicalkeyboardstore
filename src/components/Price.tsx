@@ -1,15 +1,10 @@
 "use client";
 
+import { ProdType } from "@/types/types";
 import React, { useEffect, useState } from "react";
 
-type Props = {
-  price: number;
-  id: string;
-  options?: { title: string; additionalPrice: number }[];
-};
-
-const Price = ({ price, id, options }: Props) => {
-  const [total, setTotal] = useState(price);
+const Price = ({ product }: { product: ProdType }) => {
+  const [total, setTotal] = useState(product.price);
   const [quantity, setQuantity] = useState(1);
   const [selectedButt, setButt] = useState(0);
 
@@ -19,11 +14,12 @@ const Price = ({ price, id, options }: Props) => {
     // console.log("3rd", price)
     // console.log("4rd", options ? options[selectedButt].additionalPrice : "does not exist")
 
-    setTotal(
-      quantity *
-        (options?.length ? price + options[selectedButt].additionalPrice : price)
-    );
-  }, [quantity, selectedButt, options, price]);
+    if (product.options?.length) {
+      setTotal(
+        quantity * product.price + product.options[selectedButt].additionalPrice
+      );
+    }
+  }, [quantity, selectedButt, product.options, product.price]);
 
   return (
     <div className="flex flex-col gap-3">
@@ -31,19 +27,20 @@ const Price = ({ price, id, options }: Props) => {
       {/* This is the div for the options */}
 
       <div className="flex gap-4">
-        {options?.length && options?.map((option, index) => (
-          <button
-            key={option.title}
-            className="p-2 ring-1 ring-black rounded-md hover:"
-            style={{
-              background: selectedButt === index ? "black" : "white",
-              color: selectedButt === index ? "white" : "black",
-            }}
-            onClick={() => setButt(index)}
-          >
-            {option.title}
-          </button>
-        ))}
+        {product.options?.length &&
+          product.options?.map((option, index) => (
+            <button
+              key={option.title}
+              className="p-2 ring-1 ring-black rounded-md hover:"
+              style={{
+                background: selectedButt === index ? "black" : "white",
+                color: selectedButt === index ? "white" : "black",
+              }}
+              onClick={() => setButt(index)}
+            >
+              {option.title}
+            </button>
+          ))}
       </div>
 
       {/* This is the div for the amount of the product */}

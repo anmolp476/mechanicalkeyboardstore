@@ -43,9 +43,7 @@ const ProductPage = async({params}:{params:{id:string}}) => {
         <h1 className="text-2xl font-bold uppercase">{singleProd.title}</h1>
         <p>{singleProd.desc}</p>
         <Price
-          id={singleProd.id}
-          price={singleProd.price}
-          options={singleProd.options}
+          product={singleProd}
         />
       </div>
     </div>
