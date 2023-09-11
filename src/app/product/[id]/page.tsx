@@ -1,5 +1,4 @@
 import Price from "@/components/Price";
-import { singleProduct } from "@/data";
 import { ProdType } from "@/types/types";
 import Image from "next/image";
 import React from "react";
@@ -42,7 +41,7 @@ const ProductPage = async({params}:{params:{id:string}}) => {
       {/* Another text div */}
       <div className="h-1/2 flex flex-col gap-4 mb-16 md:mb-0 ml-0 sm:ml-5 md:justify-center md:gap-4 xl:gap-6">
         <h1 className="text-2xl font-bold uppercase">{singleProd.title}</h1>
-        <p>{singleProduct.desc}</p>
+        <p>{singleProd.desc}</p>
         <Price
           id={singleProd.id}
           price={singleProd.price}
