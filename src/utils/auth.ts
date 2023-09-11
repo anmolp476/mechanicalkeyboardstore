@@ -38,16 +38,15 @@ export const auth: NextAuthOptions = {
       return session;
     },
     async jwt({ token }) {
-        
-        const userInDataBase = await prisma.user.findUnique({
-            where:{
-                email:token.email!
-            }
-        })
+      const userInDataBase = await prisma.user.findUnique({
+        where: {
+          email: token.email!,
+        },
+      });
 
-        token.isAdmin = userInDataBase?.isAdmin!
+      token.isAdmin = userInDataBase?.isAdmin!;
 
-        return token;
+      return token;
     },
   },
 };

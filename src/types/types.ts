@@ -26,13 +26,25 @@ export type OrderType = {
   intent_id?: String;
 };
 
-export type CartType = {
+export type CartItemType = {
   id: string;
   title: string;
+  image?: string;
   price: number;
   optionTitle?: string;
-  image?: string;
-  quantity: string;
+  quantity: number;
+};
+
+export type CartType = {
+  products: CartItemType[];
+  totalItems: number;
+  totalPrice: number;
+}
+
+
+export type ActionType = {
+  addToCart:(item:CartItemType)=> void
+  removeFromCart:(item:CartItemType)=> void
 }
 
 
