@@ -21,7 +21,7 @@ const Price = ({ price, id, options }: Props) => {
 
     setTotal(
       quantity *
-        (options ? price + options[selectedButt].additionalPrice : price)
+        (options?.length ? price + options[selectedButt].additionalPrice : price)
     );
   }, [quantity, selectedButt, options, price]);
 
@@ -31,7 +31,7 @@ const Price = ({ price, id, options }: Props) => {
       {/* This is the div for the options */}
 
       <div className="flex gap-4">
-        {options?.map((option, index) => (
+        {options?.length && options?.map((option, index) => (
           <button
             key={option.title}
             className="p-2 ring-1 ring-black rounded-md hover:"
