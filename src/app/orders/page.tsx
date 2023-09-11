@@ -1,7 +1,7 @@
 "use client";
 
 import { OrderType } from "@/types/types";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -22,18 +22,37 @@ const Orders = () => {
       fetch("http://localhost:3000/api/orders").then((res) => res.json()),
   });
 
-  if (isLoading || status === "loading") {
-    return "Loading...";
-  }
+  const queryClient = useQueryClient();
 
-  const handleUpdate = (e:React.FormEvent<HTMLFormElement>, id:string) =>{
+  const changeOrder = useMutation({
+    mutationFn: ({ id, status }: { id: String; status: string }) => {
+      return fetch(`http://localhost:3000/api/orders/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(status),
+      });
+    },
+
+    onSuccess() {
+      queryClient.invalidateQueries({ queryKey: ["orders"] });
+    },
+  });
+
+  const handleUpdate = (e: React.FormEvent<HTMLFormElement>, id: string) => {
     e.preventDefault();
 
     const form = e.target as HTMLFormElement;
 
     const input = form.elements[0] as HTMLInputElement;
 
-    const status = input.value
+    const status = input.value;
+
+
+    changeOrder.mutate({id, status})
+  };
+
+  if (isLoading || status === "loading") {
+    return "Loading...";
   }
 
   return (
@@ -62,14 +81,18 @@ const Orders = () => {
               </td>
               {session?.user.isAdmin ? (
                 <td>
-                  <form onSubmit={(e) => handleUpdate(e, item.id)} action="" className="flex items-center justify-center gap-4">
+                  <form
+                    onSubmit={(e) => handleUpdate(e, item.id)}
+                    action=""
+                    className="flex items-center justify-center gap-4"
+                  >
                     <input
                       placeholder={item.status}
                       className="p-2 ring-1 ring-green-100 rounded-md"
                     ></input>
 
                     <button className="p-2 rounded-full">
-                      <Image src="/editImg.png" alt="" width={20} height={20}/>
+                      <Image src="/editImg.png" alt="" width={20} height={20} />
                     </button>
                   </form>
                 </td>
