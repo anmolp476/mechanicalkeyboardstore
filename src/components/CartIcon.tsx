@@ -6,7 +6,6 @@ import { FiShoppingCart } from "react-icons/fi";
 import { useCartStore } from "@/utils/store";
 
 const CartIcon = () => {
-
   const { products, totalItems, totalPrice, removeFromCart } = useCartStore();
 
   return (

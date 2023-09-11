@@ -1,6 +1,7 @@
 "use client";
 
 import { ProdType } from "@/types/types";
+import { useCartStore } from "@/utils/store";
 import React, { useEffect, useState } from "react";
 
 const Price = ({ product }: { product: ProdType }) => {
@@ -20,6 +21,8 @@ const Price = ({ product }: { product: ProdType }) => {
       );
     }
   }, [quantity, selectedButt, product.options, product.price]);
+
+  const {addToCart} = useCartStore()
 
   return (
     <div className="flex flex-col gap-3">
@@ -65,7 +68,14 @@ const Price = ({ product }: { product: ProdType }) => {
         </div>
 
         {/* This is the add to cart button */}
-        <button className="uppercase w-56 bg-black text-white p-2 ring-1 ring-black">
+        <button className="uppercase w-56 bg-black text-white p-2 ring-1 ring-black" onClick={()=>addToCart(
+          {id: product.id,
+          title: product.title,
+          image: product.image,
+          price: total,
+          ...(product.options?.length && {optionTitle: product.options[selectedButt].title}),
+          quantity: quantity,
+        })}>
           Add to Cart
         </button>
       </div>
