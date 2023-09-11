@@ -8,17 +8,13 @@ export const GET = async (
   const { id } = params;
 
   try {
-
     const singleProd = await prisma.product.findUnique({
       where: {
         id: id,
       },
     });
 
-    return new NextResponse(
-      JSON.stringify(JSON.stringify(singleProd)),
-      { status: 200 }
-    );
+    return new NextResponse(JSON.stringify(singleProd), { status: 200 });
   } catch (err) {
     console.log(err);
 
