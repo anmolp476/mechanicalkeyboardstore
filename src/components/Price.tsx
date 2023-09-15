@@ -24,6 +24,19 @@ const Price = ({ product }: { product: ProdType }) => {
 
   const {addToCart} = useCartStore()
 
+  const handleCart = () => {
+    addToCart({
+      id: product.id,
+      title: product.title,
+      image: product.image,
+      price: total,
+      ...(product.options?.length && {
+        optionTitle: product.options[selectedButt].title,
+      }),
+      quantity: quantity,
+    });
+  }
+
   return (
     <div className="flex flex-col gap-3">
       <h2 className="text-xl font-bold">${total}</h2>
@@ -68,14 +81,7 @@ const Price = ({ product }: { product: ProdType }) => {
         </div>
 
         {/* This is the add to cart button */}
-        <button className="uppercase w-56 bg-black text-white p-2 ring-1 ring-black" onClick={()=>addToCart(
-          {id: product.id,
-          title: product.title,
-          image: product.image,
-          price: total,
-          ...(product.options?.length && {optionTitle: product.options[selectedButt].title}),
-          quantity: quantity,
-        })}>
+        <button className="uppercase w-56 bg-black text-white p-2 ring-1 ring-black" onClick={()=>handleCart()}>
           Add to Cart
         </button>
       </div>
