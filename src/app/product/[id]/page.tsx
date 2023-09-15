@@ -27,7 +27,7 @@ const ProductPage = async({params}:{params:{id:string}}) => {
   const singleProd : ProdType = await getData(params.id)
 
   return (
-    <div className="md:gap-8 lg:px-20 xl:px-40 p-4 h-screen gap-4 flex flex-col md:items-center justify-around text-black md:flex-row ">
+    <div className="relative md:gap-8 lg:px-20 xl:px-40 p-4 h-screen gap-4 flex flex-col md:items-center justify-around text-black md:flex-row ">
       {/* Another img div */}
       {singleProd.image && (
         <div className="relative w-full h-1/6 sm:h-1/2">
