@@ -9,7 +9,7 @@ import React, { useEffect, useState } from "react";
 const stripePromise = loadStripe(process.env.STRIPE_PUBLIC_KEY!);
 
 const Payment = ({ params }: { params: { id: string } }) => {
-  const id = params.id;
+  const {id} = params;
 
   const [clientSecret, setClientSecret] = useState("");
 
