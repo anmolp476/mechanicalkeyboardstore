@@ -27,7 +27,7 @@ const Cart = () => {
             )}
             <div className="">
               <h1 className="uppercase text-lg font-bold text-center">
-                {product.title}
+                {product.title} ({product.quantity})
               </h1>
               <span className="text-xs flex items-center justify-center">
                 {product.optionTitle}
