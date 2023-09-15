@@ -1,12 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { FiShoppingCart } from "react-icons/fi";
 import { useCartStore } from "@/utils/store";
 
 const CartIcon = () => {
+
   const { products, totalItems, totalPrice, removeFromCart } = useCartStore();
+
+  useEffect(() => {
+    useCartStore.persist.rehydrate();
+  }, []);
 
   return (
     <Link href="/cart" className="flex items-center gap-4">
