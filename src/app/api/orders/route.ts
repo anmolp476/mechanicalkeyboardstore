@@ -4,9 +4,41 @@
 import Orders from "@/app/orders/page";
 import { getAuthSession } from "@/utils/auth";
 import prisma from "@/utils/connect";
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 
-export const GET = async () => {
+export const GET = async (req: NextRequest) => {
+  const session = await getAuthSession();
+  if (session) {
+    try {
+      const body = await req.json();
+
+      const newOrder = await prisma.order.create({
+        data:body
+      });
+      return new NextResponse(JSON.stringify(newOrder), {
+        status: 200,
+      });
+
+    } catch (err) {
+      console.log(err);
+      return new NextResponse(
+        JSON.stringify({ message: "ERROR ERROR ERROR" }),
+        {
+          status: 500,
+        }
+      );
+    }
+  } else {
+    return new NextResponse(
+      JSON.stringify({ message: "ERROR ERROR ERROR NOT AUTHENTICATED" }),
+      {
+        status: 401,
+      }
+    );
+  }
+};
+
+export const POST = async () => {
   const session = await getAuthSession();
   if (session) {
     try {
@@ -39,8 +71,4 @@ export const GET = async () => {
       }
     );
   }
-};
-
-export const POST = () => {
-  return new NextResponse("Hello", { status: 200 });
 };

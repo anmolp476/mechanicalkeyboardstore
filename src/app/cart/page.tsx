@@ -1,16 +1,48 @@
-"use client"
+"use client";
 
 import { useCartStore } from "@/utils/store";
 import Image from "next/image";
 import React, { useEffect } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Cart = () => {
-  
   const { products, totalItems, totalPrice, removeFromCart } = useCartStore();
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     useCartStore.persist.rehydrate();
   }, []);
+
+  const checkout = async () => {
+    // If the user isn't logged in
+    if (!session) {
+      router.push("/");
+    }
+    else
+    {
+      try {
+        
+        const response = await fetch("http://localhost:3000/api/orders", {
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify({
+            price:totalPrice,
+            products,
+            status: "Unpaid",
+            userEmail: session.user.email
+          })
+        })
+
+        const data = await response.json()
+        router.push(`/payment/${data.id}`)
+
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  };
 
   return (
     <div className="h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col text-black lg:flex-row">
@@ -34,7 +66,12 @@ const Cart = () => {
               </span>
             </div>
             <h2 className="pr-5">{product.price}</h2>
-            <span className="cursor-pointer" onClick={()=>removeFromCart(product)}>X</span>
+            <span
+              className="cursor-pointer"
+              onClick={() => removeFromCart(product)}
+            >
+              X
+            </span>
           </div>
         ))}
       </div>
@@ -58,7 +95,10 @@ const Cart = () => {
           <span className="">Total Cost</span>
           <span className="font-bold">{totalPrice}</span>
         </div>
-        <button className="bg-black text-white p-3 rounded-md w-1/2 self-end">
+        <button
+          className="bg-black text-white p-3 rounded-md w-1/2 self-end"
+          onClick={checkout}
+        >
           Checkout
         </button>
       </div>
