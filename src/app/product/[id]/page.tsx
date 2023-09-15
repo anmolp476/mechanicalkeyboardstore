@@ -1,3 +1,4 @@
+import DeleteButtonAdmin from "@/components/DeleteButtonAdmin";
 import Price from "@/components/Price";
 import { ProdType } from "@/types/types";
 import Image from "next/image";
@@ -46,6 +47,7 @@ const ProductPage = async({params}:{params:{id:string}}) => {
           product={singleProd}
         />
       </div>
+      <DeleteButtonAdmin/>
     </div>
   );
 };
