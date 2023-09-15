@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const DeleteButtonAdmin = ({ id }: { id: string }) => {
   const { data: session, status } = useSession();
@@ -16,12 +16,25 @@ const DeleteButtonAdmin = ({ id }: { id: string }) => {
     return null;
   }
 
-  const handleDelete = () => {
-    
-  }
+  const handleDelete = async () => {
+    const response = await fetch(`http://localhost:3000/api/products/${id}`, {
+      method: "DELETE",
+    });
+
+    // STATUS OK
+    if (response.status == 200) {
+      router.push("/menu");
+    } else {
+      const data = await response.json();
+      console.log(data.message)
+    }
+  };
 
   return (
-    <button className="bg-black p-2 text-white rounded-full absolute top-4 right-4" onClick={handleDelete}>
+    <button
+      className="bg-black p-2 text-white rounded-full absolute top-4 right-4"
+      onClick={()=>handleDelete()}
+    >
       Delete
     </button>
   );
