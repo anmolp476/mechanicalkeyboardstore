@@ -3,12 +3,13 @@ import { NextResponse } from "next/server";
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-export const POST = async ({ params }: { params: { orderId: string } }) => {
-  const {orderId} = params;
+export const POST = async ({ params }: { params: { theOrder: string } }) => {
+  console.log(params);
+  const { theOrder } = params; // Here is the problem :(
 
   const order = await prisma.order.findUnique({
     where: {
-      id: orderId,
+      id: theOrder,
     },
   });
 
@@ -22,11 +23,11 @@ export const POST = async ({ params }: { params: { orderId: string } }) => {
     });
 
     await prisma.order.update({
-        where:{
-            id:orderId
-        },
-        data:{intent_id:paymentIntent.id}
-    })
+      where: {
+        id: theOrder,
+      },
+      data: { intent_id: paymentIntent.id },
+    });
 
     return new NextResponse(
       JSON.stringify({ clientSecret: paymentIntent.client_secret }),
@@ -39,4 +40,11 @@ export const POST = async ({ params }: { params: { orderId: string } }) => {
       status: 404,
     });
   }
+};
+
+export const GET = async ({ params }: { params: { orderId: string } }) => {
+  console.log(params);
+  return new NextResponse(JSON.stringify(params), {
+    status: 200,
+  });
 };
