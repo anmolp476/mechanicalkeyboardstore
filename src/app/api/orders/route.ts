@@ -6,7 +6,7 @@ import { getAuthSession } from "@/utils/auth";
 import prisma from "@/utils/connect";
 import { NextResponse, NextRequest } from "next/server";
 
-export const GET = async (req: NextRequest) => {
+export const POST = async (req: NextRequest) => {
   const session = await getAuthSession();
   if (session) {
     try {
@@ -22,7 +22,7 @@ export const GET = async (req: NextRequest) => {
     } catch (err) {
       console.log(err);
       return new NextResponse(
-        JSON.stringify({ message: "ERROR ERROR ERROR" }),
+        JSON.stringify({ message: "ERROR ERROR ERROR ORDERS POST" }),
         {
           status: 500,
         }
@@ -38,7 +38,7 @@ export const GET = async (req: NextRequest) => {
   }
 };
 
-export const POST = async () => {
+export const GET = async () => {
   const session = await getAuthSession();
   if (session) {
     try {
@@ -57,7 +57,7 @@ export const POST = async () => {
     } catch (err) {
       console.log(err);
       return new NextResponse(
-        JSON.stringify({ message: "ERROR ERROR ERROR" }),
+        JSON.stringify({ message: "ERROR ERROR ERROR ORDERS GET" }),
         {
           status: 500,
         }
