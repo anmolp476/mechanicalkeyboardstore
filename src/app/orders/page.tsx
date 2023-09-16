@@ -47,8 +47,7 @@ const Orders = () => {
 
     const status = input.value;
 
-
-    changeOrder.mutate({id, status})
+    changeOrder.mutate({ id, status });
   };
 
   if (isLoading || status === "loading") {

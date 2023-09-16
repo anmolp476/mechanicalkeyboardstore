@@ -3,12 +3,12 @@ import { NextResponse } from "next/server";
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-export const POST = async ({ params }: { params: { id: string } }) => {
-  const theId = params.id;
+export const POST = async ({ params }: { params: { orderId: string } }) => {
+  const {orderId} = params;
 
   const order = await prisma.order.findUnique({
     where: {
-      id: theId,
+      id: orderId,
     },
   });
 
@@ -23,7 +23,7 @@ export const POST = async ({ params }: { params: { id: string } }) => {
 
     await prisma.order.update({
         where:{
-            id:theId
+            id:orderId
         },
         data:{intent_id:paymentIntent.id}
     })
