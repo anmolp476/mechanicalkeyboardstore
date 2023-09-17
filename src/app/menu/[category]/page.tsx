@@ -29,17 +29,19 @@ const CategoryPage = async({params}:Props) => {
     <div className="text-black flex flex-wrap">
       {keyboards.map((keyboard) => (
         <Link
+          key={keyboard.id}
           href={`/product/${keyboard.id}`}
           className="group flex flex-col justify-between w-full h-[60vh] p-4 border-r-2 border-b-2 border-black lg:w-1/3 sm:w-1/2"
         >
           {/* This is for the image */}
           {keyboard.image && (
-            <div key={keyboard.id} className="relative h-[60%] md:h-[80%]">
+            <div key={keyboard.id + "isoja"} className="relative h-[60%] md:h-[80%]">
               <Image
                 src={keyboard.image}
                 alt=""
                 fill
                 className="object-contain"
+                key={keyboard.id+"dfd"}
               />
             </div>
           )}
