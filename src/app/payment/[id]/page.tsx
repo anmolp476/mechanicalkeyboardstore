@@ -12,7 +12,6 @@ const stripePromise = loadStripe(
 
 const Payment = ({ params }: { params: { id: string } }) => {
   const { id } = params;
-  console.log("THE SUPER PRIME EXTREME GAYS ARE HERE", id);
 
   const [clientSecret, setClientSecret] = useState("");
 
