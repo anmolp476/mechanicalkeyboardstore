@@ -12,7 +12,7 @@ const stripePromise = loadStripe(
 
 const Payment = ({ params }: { params: { id: string } }) => {
   const { id } = params;
-  console.log(id)
+  console.log("THE SUPER PRIME EXTREME GAYS ARE HERE", id);
 
   const [clientSecret, setClientSecret] = useState("");
 
@@ -26,7 +26,7 @@ const Payment = ({ params }: { params: { id: string } }) => {
           }
         );
         const data = await response.json();
-        console.log(data)
+        // console.log(data);
         setClientSecret(data.clientSecret);
       } catch (error) {
         console.log(error);
@@ -38,9 +38,6 @@ const Payment = ({ params }: { params: { id: string } }) => {
 
   const options: StripeElementsOptions = {
     clientSecret,
-    appearance: {
-      theme: "night",
-    },
   };
 
   return (

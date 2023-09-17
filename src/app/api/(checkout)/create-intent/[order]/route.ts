@@ -1,19 +1,19 @@
 import prisma from "@/utils/connect";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-export const POST = async ({ params }: { params: { theOrder: string } }) => {
-  console.log(params);
-  const { theOrder } = params; // Here is the problem :(
+export const POST = async (req:NextRequest, { params }: { params: { order: string } }) => {
+  console.log("Params object form the POST request", params);
+  const { order } = params; // Here is the problem :(
 
-  const order = await prisma.order.findUnique({
+  const theOrder = await prisma.order.findUnique({
     where: {
-      id: theOrder,
+      id: order,
     },
   });
 
-  if (order) {
+  if (theOrder) {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: 100 * 100, // By default the price is 1 cent, so multiplying by 100 gives a 100 dollars
       currency: "cad",
@@ -24,7 +24,7 @@ export const POST = async ({ params }: { params: { theOrder: string } }) => {
 
     await prisma.order.update({
       where: {
-        id: theOrder,
+        id: order,
       },
       data: { intent_id: paymentIntent.id },
     });

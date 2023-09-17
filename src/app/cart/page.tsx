@@ -18,7 +18,7 @@ const Cart = () => {
   const checkout = async () => {
     // If the user isn't logged in
     if (!session) {
-      router.push("/");
+      router.push("/login");
     }
     else
     {
