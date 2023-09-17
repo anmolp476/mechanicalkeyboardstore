@@ -3,7 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-export const POST = async (req:NextRequest, { params }: { params: { order: string } }) => {
+export const POST = async (
+  req: NextRequest,
+  { params }: { params: { order: string } }
+) => {
   console.log("Params object form the POST request", params);
   const { order } = params; // Here is the problem :(
 
@@ -42,7 +45,10 @@ export const POST = async (req:NextRequest, { params }: { params: { order: strin
   }
 };
 
-export const GET = async ({ params }: { params: { orderId: string } }) => {
+export const GET = async (
+  req: NextRequest,
+  { params }: { params: { orderId: string } }
+) => {
   console.log(params);
   return new NextResponse(JSON.stringify(params), {
     status: 200,
