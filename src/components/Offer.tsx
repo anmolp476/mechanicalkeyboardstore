@@ -19,7 +19,7 @@ const Offer = () => {
         </p>
         <CountDown />
         <button className="bg-white text-black rounded-md py-3 px-6">
-          Buy Now!
+          Buy Now!!
         </button>
       </div>
 
