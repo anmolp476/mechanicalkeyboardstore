@@ -12,7 +12,7 @@ const Navbar = () => {
       <div className="hidden md:flex gap-4 flex-1">
         <Link href="/">Home</Link>
         <Link href="/menu">Keyboards</Link>
-        <Link href="/">Contact</Link>
+        {/* <Link href="/">Contact</Link> */}
       </div>
 
       {/* { This is for the logo } */}

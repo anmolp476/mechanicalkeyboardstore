@@ -12,7 +12,7 @@ const Offer = () => {
         <h1 className="text-white text-4xl font-bold lg:text-5xl">Scrumptious Keys and Switches</h1>
         <p className="text-white xl:text-xl">
           Elevate your typing experience with the [Product Name] Mechanical
-          Keyboard. Designed for precision and style, it's the ultimate
+          Keyboard. Designed for precision and style, it&apos;s the ultimate
           companion for enthusiasts and professionals.
         </p>
         <CountDown/>

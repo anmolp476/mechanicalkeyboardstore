@@ -34,7 +34,7 @@ const CategoryPage = async({params}:Props) => {
         >
           {/* This is for the image */}
           {keyboard.image && (
-            <div className="relative h-[60%] md:h-[80%]">
+            <div key={keyboard.id} className="relative h-[60%] md:h-[80%]">
               <Image
                 src={keyboard.image}
                 alt=""
