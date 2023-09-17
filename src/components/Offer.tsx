@@ -13,7 +13,7 @@ const Offer = () => {
           Scrumptious Keys and Switches
         </h1>
         <p className="text-white xl:text-xl">
-          Elevate your typing experience with the [Product Name] Mechanical
+          Elevate your typing experience with the Leopold Mechanical
           Keyboard. Designed for precision and style, it&apos;s the ultimate
           companion for enthusiasts and professionals.
         </p>
