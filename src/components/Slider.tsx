@@ -25,7 +25,7 @@ const Slider = () => {
       image: "/slide3_upscaled.jpg",
     },
   ];
-
+// test
   useEffect(() => {
     const timeInterval = setInterval(
       () => setImage((prev) => (prev === sliderItems.length-1 ? 0 : prev + 1)),
