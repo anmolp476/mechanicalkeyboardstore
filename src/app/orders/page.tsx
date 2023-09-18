@@ -19,14 +19,14 @@ const Orders = () => {
   const { isLoading, error, data } = useQuery({
     queryKey: ["orders"],
     queryFn: () =>
-      fetch("http://localhost:3000/api/orders").then((res) => res.json()),
+      fetch("api/orders").then((res) => res.json()),
   });
 
   const queryClient = useQueryClient();
 
   const changeOrder = useMutation({
     mutationFn: ({ id, status }: { id: String; status: string }) => {
-      return fetch(`http://localhost:3000/api/orders/${id}`, {
+      return fetch(`api/orders/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(status),

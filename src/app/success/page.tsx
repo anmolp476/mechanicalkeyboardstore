@@ -11,7 +11,7 @@ const Success = () => {
   useEffect(() => {
     const request = async () => {
       try {
-        await fetch(`http://localhost:3000/api/confirm${paymentIntent}`, {
+        await fetch(`api/confirm${paymentIntent}`, {
           method: "PUT",
         });
         router.push("/orders")
