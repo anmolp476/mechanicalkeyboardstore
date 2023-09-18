@@ -9,7 +9,7 @@ import React from "react";
 
 const getData = async (id: String) => {
   const res = await fetch(
-    `api/products/${id}`,
+    `http://localhost:3000/api/products/${id}`,
     {
       cache: "no-store",
     }
